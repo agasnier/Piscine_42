@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 
-find . -name "*.sh" | sed 's/\.\///' | sed 's/\.sh//'
+find . -name "*.sh" -exec basename {} \; | sed 's/\.sh//'

@@ -1,3 +1,3 @@
 FT_USER=bocal
 
-id $FT_USER 
+id -Gn $FT_USER | tr ' ' ',' 
