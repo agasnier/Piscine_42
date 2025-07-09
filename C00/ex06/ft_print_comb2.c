@@ -27,28 +27,16 @@ void	print(char a, char b, char c, char d)
 
 void	ft_print_comb2(void)
 {
-	char	a;
-	char	b;
-	char	c;
-	char	d;
+	int	a;
+	int	b;
 
-	a = '0';
-	while (a <= '9')
+	a = 0;
+	while (a <= 98)
 	{
-		b = '0';
-		while (b <= '9')
+		b = a + 1;
+		while (b <= 99)
 		{
-			c = a;
-			while (c <= '9')
-			{
-				d = b + 1;
-				while (d <= '9')
-				{
-					print(a, b, c, d);
-					d++;
-				}
-				c++;
-			}
+			print((a / 10) + '0', (a % 10) + '0', (b / 10) + '0', (b % 10)  + '0');
 			b++;
 		}
 		a++;
