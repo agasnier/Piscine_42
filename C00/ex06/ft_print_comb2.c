@@ -1,48 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_comb.c                                    :+:      :+:    :+:   */
+/*   ft_print_comb2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 09:42:21 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/09 13:20:02 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/09 13:47:07 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/09 14:11:30 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	print(char a, char b, char c)
+void	print(char a, char b, char c, char d)
 {
 	write(1, &a, 1);
 	write(1, &b, 1);
+	write(1, " ", 1);
 	write(1, &c, 1);
-	if (!(a == '7' && b == '8' && c == '9'))
+	write(1, &d, 1);
+	if (!(a == 9 && b == 8 && c == 9 && d == 9))
 	{
 		write(1, ", ", 2);
 	}
 }
 
-void	ft_print_comb(void)
+void	ft_print_comb2(void)
 {
 	char	a;
 	char	b;
 	char	c;
+	char	d;
 
 	a = '0';
-	while (a <= '7')
+	b = '0';
+	c = '0';
+	d = b + 1;
+	while (a <= '9')
 	{
-		b = a + 1;
-		while (b <= '8')
+		while (b <= '9')
 		{
-			c = b + 1;
 			while (c <= '9')
 			{
-				print(a, b, c);
+				while (d <= '9')
+				{
+					print(a, b, c, d);
+					d++;
+				}
 				c++;
 			}
 			b++;
 		}
 		a++;
 	}
+}
+
+int	main(void)
+{
+	ft_print_comb2();
+	return (0);
 }
