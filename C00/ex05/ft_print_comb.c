@@ -1,25 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_print_comb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 08:46:30 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/09 09:03:34 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/09 09:42:21 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/09 10:58:39 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_print_alphabet(void)
+void	ft_print_comb(void)
 {
-	char	l;
+	char	a;
+	char	b;
+	char	c;
 
-	l = 'a';
-	while (l <= 'z')
+	a = '0';
+	while (a < '7')
 	{
-		write(1, &l, 1);
-		l++;
+		b = a + 1;
+		while (b < '8')
+		{
+			c = b + 1;
+			while (c < '9')
+			{
+				write(1, &a, 1);
+				write(1, &b, 1);
+				write(1, &c, 1);
+				write(1, ", ", 2);
+				c++;
+			}
+			b++;
+		}
+		a++;	
 	}
+	write(1, &a, 1);
+	write(1, &b, 1);
+	write(1, &c, 1);
+}
+
+int	main(void)
+{
+	ft_print_comb();
 }

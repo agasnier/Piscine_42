@@ -1,3 +1,1 @@
-#!/bin/bash
-
-ifconfig | grep ether | cut -f 10 -d ' '
+ifconfig | grep ether | grep -Eo '..:..:..:..:..:..'
