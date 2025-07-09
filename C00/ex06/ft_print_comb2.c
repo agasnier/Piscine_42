@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:47:07 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/09 14:11:30 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/09 14:49:07 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print(char a, char b, char c, char d)
 	write(1, " ", 1);
 	write(1, &c, 1);
 	write(1, &d, 1);
-	if (!(a == 9 && b == 8 && c == 9 && d == 9))
+	if (!(a == '9' && b == '8' && c == '9' && d == '9'))
 	{
 		write(1, ", ", 2);
 	}
@@ -33,15 +33,15 @@ void	ft_print_comb2(void)
 	char	d;
 
 	a = '0';
-	b = '0';
-	c = '0';
-	d = b + 1;
 	while (a <= '9')
 	{
+		b = '0';
 		while (b <= '9')
 		{
+			c = a;
 			while (c <= '9')
 			{
+				d = b + 1;
 				while (d <= '9')
 				{
 					print(a, b, c, d);
@@ -53,10 +53,4 @@ void	ft_print_comb2(void)
 		}
 		a++;
 	}
-}
-
-int	main(void)
-{
-	ft_print_comb2();
-	return (0);
 }
