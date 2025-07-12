@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_ft.c                                   :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 16:51:17 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/10 10:18:09 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/12 08:35:31 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/12 09:31:16 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_ultimate_ft(int *********nbr)
+void	ft_sort_int_tab(int *tab, int size)
 {
-	*********nbr = 42;
+	int	n;
+	int	tmp;
+
+	n = 0;
+	while (n <= size)
+	{
+		if (tab[n] < tab[n - 1])
+		{
+			tmp = tab[n];
+			tab[n] = tab[n - 1];
+			tab[n - 1] = tmp;
+			n--;
+		}
+		else
+		{
+			n++;
+		}
+	}
 }

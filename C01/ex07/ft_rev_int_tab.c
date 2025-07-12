@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_ft.c                                   :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 16:51:17 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/10 10:18:09 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/10 16:29:04 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/11 09:27:14 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_ultimate_ft(int *********nbr)
+void	ft_rev_int_tab(int *tab, int size)
 {
-	*********nbr = 42;
+	int	i;
+	int	tmp;
+
+	i = 0;
+	while (i < size)
+	{
+		tmp = tab[i];
+		tab[i] = tab[size - 1];
+		tab[size - 1] = tmp;
+		i++;
+		size--;
+	}
 }
