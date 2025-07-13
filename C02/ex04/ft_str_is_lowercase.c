@@ -1,43 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_str_is_lowercase.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 11:19:02 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/12 12:39:27 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/13 12:31:07 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/13 13:25:55 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*g_pattern;
-void	ft_putchar(void);
-
-int	main(int argc, char *argv[])
+int	ft_str_is_lowercase(char *str)
 {
-	if (argc <= 1 || argc > 2)
-	{
-		write(1, "error", 5);
-		return (0);
-	}
+	int	i;
 
-	else if (argv[1][0] == '0')
+	i = 0;
+	while (str[i] != '\0')
 	{
-		g_pattern = "o|o-";
+		if (str[i] < 97 || str[i] > 122)
+		{
+			return (0);
+		}
+		i++;
 	}
-
-		else if (argv[1][0] == '1')
-	{
-		g_pattern = "/*\\";
-	}
-
-		else if (argv[1][0] == '2' || argv[1][0] == '3' || argv[1][3] == '4' )
-	{
-		g_pattern = "ABC";
-	}
-
-	ft_putchar();
-	return (0);
+	return (1);
 }

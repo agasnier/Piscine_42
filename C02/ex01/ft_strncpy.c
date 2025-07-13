@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 15:25:33 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/08 15:30:13 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/13 12:04:23 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/13 12:25:33 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-extern char *g_pattern;
 
-void	ft_putchar(void)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	char c = g_pattern[0];
-	write(1, &c, 1);
-	c = g_pattern[1];
-	write(1, &c, 1);
-	c = g_pattern[2];
-	write(1, &c, 1);
+	unsigned int	i;
+
+	i = 0;
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	printf("%s\n", src);
+	printf("%s\n", dest);
+	return (dest);
 }
