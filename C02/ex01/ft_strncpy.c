@@ -22,7 +22,5 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 		dest[i] = src[i];
 		i++;
 	}
-	printf("%s\n", src);
-	printf("%s\n", dest);
 	return (dest);
 }

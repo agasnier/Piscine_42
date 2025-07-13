@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 12:31:07 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/13 14:42:38 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/13 14:54:25 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/13 15:21:52 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_str_is_printable(char *str)
+char	*ft_strlowcase(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] > 127 || str[i] < 32)
+		if (str[i] <= 65 || str[i] >= 90)
 		{
-			return (0);
+			str[i] += 32;
 		}
 		i++;
 	}
-	return (1);
+	return (str);
 }
