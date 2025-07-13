@@ -33,7 +33,7 @@ void	ft_putnbr(int nb)
 		return ;
 	}
 	if (nb >= 10)
-	{
+	{ 
 		ft_putnbr(nb / 10);
 	}
 	print((nb % 10) + '0');
