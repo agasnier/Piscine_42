@@ -1,43 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 11:19:02 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/12 12:39:27 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/08 15:25:33 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/08 15:30:13 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+extern char *g_pattern;
 
-char	*g_pattern;
-void	ft_putchar(void);
-
-int	main(int argc, char *argv[])
+void	ft_putchar(void)
 {
-	if (argc <= 1 || argc > 2)
-	{
-		write(1, "error", 5);
-		return (0);
-	}
-
-	else if (argv[1][0] == '0')
-	{
-		g_pattern = "o|o-";
-	}
-
-		else if (argv[1][0] == '1')
-	{
-		g_pattern = "/*\\";
-	}
-
-		else if (argv[1][0] == '2' || argv[1][0] == '3' || argv[1][3] == '4' )
-	{
-		g_pattern = "ABC";
-	}
-
-	ft_putchar();
-	return (0);
+	char c = g_pattern[0];
+	write(1, &c, 1);
+	c = g_pattern[1];
+	write(1, &c, 1);
+	c = g_pattern[2];
+	write(1, &c, 1);
 }
