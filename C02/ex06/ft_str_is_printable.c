@@ -6,11 +6,9 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:31:07 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/13 14:42:38 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/14 10:54:05 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
 
 int	ft_str_is_printable(char *str)
 {
@@ -19,7 +17,7 @@ int	ft_str_is_printable(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] > 127 || str[i] < 32)
+		if (str[i] > 126 || str[i] < 32)
 		{
 			return (0);
 		}

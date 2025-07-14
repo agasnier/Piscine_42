@@ -6,20 +6,18 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 14:54:25 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/13 15:24:30 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:11:09 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-char	*ft_strlowcase(char *str)
+char	*ft_strupcase(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] <= 97 || str[i] >= 122)
+		if (str[i] >= 'a' && str[i] <= 'z')
 		{
 			str[i] -= 32;
 		}

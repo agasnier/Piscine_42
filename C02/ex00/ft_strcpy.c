@@ -6,11 +6,9 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 09:52:44 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/12 09:59:45 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/14 10:44:51 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
 
 char	*ft_strcpy(char *dest, char *src)
 {
@@ -22,5 +20,6 @@ char	*ft_strcpy(char *dest, char *src)
 		dest[i] = src[i];
 		i++;
 	}
+	dest[i] = '\0';
 	return (dest);
 }

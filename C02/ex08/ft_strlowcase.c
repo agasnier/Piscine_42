@@ -6,11 +6,9 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 14:54:25 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/13 15:21:52 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:07:59 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
 
 char	*ft_strlowcase(char *str)
 {
@@ -19,7 +17,7 @@ char	*ft_strlowcase(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] <= 65 || str[i] >= 90)
+		if (str[i] >= 'A' && str[i] <= 'Z')
 		{
 			str[i] += 32;
 		}

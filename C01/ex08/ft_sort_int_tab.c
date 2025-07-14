@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 08:35:31 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/12 09:31:16 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/14 10:36:15 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_sort_int_tab(int *tab, int size)
 	n = 0;
 	while (n <= size)
 	{
-		if (tab[n] < tab[n - 1])
+		if (tab[n] < tab[n - 1] && n != 0)
 		{
 			tmp = tab[n];
 			tab[n] = tab[n - 1];
