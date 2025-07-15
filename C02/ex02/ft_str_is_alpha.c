@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:31:07 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/14 10:48:13 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/15 11:07:28 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	ft_str_is_alpha(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (!((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')))
+		if (!((str[i] >= 'A' && str[i] <= 'Z')
+				|| (str[i] >= 'a' && str[i] <= 'z')))
 		{
 			return (0);
 		}
