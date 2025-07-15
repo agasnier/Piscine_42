@@ -1,38 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 13:53:13 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/15 16:02:34 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/15 16:20:43 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/15 16:42:04 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_strcmp(char *s1, char *s2)
+char *ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	int	i;
+	unsigned int	i;
+	unsigned int	j;
 
 	i = 0;
-	while (s1[i] == s2[i] && (s1[i] != '\0' && s2[i] != '\0'))
+	while (dest[i] != '\0')
 	{
 		i++;
 	}
-	if (s1[i] != s2[i])
+	j = 0;
+	while (src[j] != '\0' && j < nb)
 	{
-		return (s1[i] - s2[i]);
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
-	return (0);
+	dest[i] = '\0';
+	return (dest);
 }
 
-int	main(void)
+int main(void)
 {
-	char	s1[] = "";
-	char	s2[] = "9";
+	char dest[] = "Alexandre";
+	char src[] = "Gasnier";
+	unsigned int nb = 4;
 
-	printf("%d", ft_strcmp(s1, s2));
+	printf("%s", ft_strncat(dest, src, nb));
 	return (0);
 }

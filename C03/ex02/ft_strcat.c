@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 13:53:13 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/15 16:02:34 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/15 16:20:43 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/15 16:36:13 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_strcmp(char *s1, char *s2)
+char *ft_strcat(char *dest, char *src)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (s1[i] == s2[i] && (s1[i] != '\0' && s2[i] != '\0'))
+	while (dest[i] != '\0')
 	{
 		i++;
 	}
-	if (s1[i] != s2[i])
+	j = 0;
+	while (src[j] != '\0')
 	{
-		return (s1[i] - s2[i]);
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
-	return (0);
+	dest[i] = '\0';
+	return (dest);
 }
 
-int	main(void)
+int main(void)
 {
-	char	s1[] = "";
-	char	s2[] = "9";
+	char dest[] = "Alexandre";
+	char src[] = "Gasnier";
 
-	printf("%d", ft_strcmp(s1, s2));
+	printf("%s", ft_strcat(dest, src));
 	return (0);
 }
