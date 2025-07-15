@@ -10,17 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
 void	ft_sort_int_tab(int *tab, int size)
 {
 	int	n;
 	int	tmp;
 
 	n = 0;
-	while (n <= size)
+	while (n < size)
 	{
-		if (tab[n] < tab[n - 1] && n != 0)
+		if ( n > 0 && tab[n] < tab[n - 1])
 		{
 			tmp = tab[n];
 			tab[n] = tab[n - 1];

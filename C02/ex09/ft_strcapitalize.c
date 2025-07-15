@@ -20,6 +20,10 @@ void	ft_is_alpha_num(char *letter, int *mot)
 		{
 			*letter -= 32 ;
 		}
+		else if (*mot == 1 && (*letter >= 'A' && *letter <= 'Z'))
+		{
+			*letter += 32;
+		}
 		*mot = 1;
 	}
 	else
