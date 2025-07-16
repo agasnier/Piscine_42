@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 16:43:29 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/15 16:59:21 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/16 08:48:44 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,23 @@
 
 char	*ft_strstr(char *str, char *to_find)
 {
-	int	l;
 	int	i;
 	int	j;
 
-	l = 0;
-	while (to_find[l] != '\0')
-	{
-		l++;
-	}
-
-	if (l == 0)
-	{
-		return (str);
-	}
-	
 	i = 0;
 	j = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == to_find[j])
+		while (str[i] == to_find[j])
 		{
+			i++;
 			j++;
-			if (j == l)
+			if (to_find[j] == '\0')
 	                {
-        	                return(&str[i - (l - 1)]);
+        	                return(&str[i - j]);
                 	}
 		}
+		j = 0;
 		i++;
 	}
 	return(str);
@@ -52,7 +42,7 @@ char	*ft_strstr(char *str, char *to_find)
 
 int main(void)
 {
-	char str[] = "Coucou comment ca va[Diane ?";
+	char str[] = "Coucou (Diacomment ca va[Diane ?";
 	char to_find[] = "Diane";
 
 	printf("%s", ft_strstr(str, to_find));
