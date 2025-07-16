@@ -6,13 +6,11 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 16:20:43 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/15 16:42:04 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:26:39 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-char *ft_strncat(char *dest, char *src, unsigned int nb)
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -31,14 +29,4 @@ char *ft_strncat(char *dest, char *src, unsigned int nb)
 	}
 	dest[i] = '\0';
 	return (dest);
-}
-
-int main(void)
-{
-	char dest[] = "Alexandre";
-	char src[] = "Gasnier";
-	unsigned int nb = 4;
-
-	printf("%s", ft_strncat(dest, src, nb));
-	return (0);
 }

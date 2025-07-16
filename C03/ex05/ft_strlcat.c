@@ -6,52 +6,39 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 09:18:22 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/16 10:16:49 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:25:12 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+unsigned int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
 
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	unsigned int	len;
-	unsigned int	buffer;
+	unsigned int	dest_len;
+	unsigned int	src_len;
 	unsigned int	i;
+	unsigned int	j;
 
-	src[1] = '0';
-	len = 0;
-	while (dest[len] != '\0')
-	{
-		len++;
-	}
-
-	buffer = (size - 1) - len;
-
-	printf("size: %d   len: %d   Buffer: %d\n", size, len, buffer);
-	
-	len++;
+	dest_len = ft_strlen(dest);
+	src_len = ft_strlen(src);
 	i = 0;
-	while (len < size && src[i] != '\0')
+	j = dest_len;
+	while (j < size && src[i] != '\0')
 	{
-		printf("%d::%d ", len, i);
-		dest[len] = src[i];
-		len++;
+		dest[j] = src[i];
 		i++;
+		j++;
 	}
-	dest[len] = '\0';
-	printf("\n%s\n", dest);
-
-	return(size);
-
-}
-
-
-int	main(void)
-{
-	char	dest[10] = "alex";
-	char	src[] = "test";
-	ft_strlcat(dest, src, 10);
-
-	return (0);
-
+	dest[j] = '\0';
+	return (dest_len + src_len);
 }
