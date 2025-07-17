@@ -6,41 +6,44 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 16:18:28 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/16 16:41:19 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:29:59 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	 ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
+	int	sign;
+	int	number;
 
-	//clean all space and \t
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\t')
+	sign = 1;
+	while (!(str[i] >= '0' && str[i] <= '9'))
 	{
+		if (str[i] == '-')
+		{
+			sign *= -1;
+		}
 		i++;
-	}	
-
-	printf("%s\n", str);
-	printf("%s\n", &str[i]);
-
-	//sign even n "-" ->
-
-
-
-
-
-	// return initial portion
-	return (0);
+	}
+	number = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		number *= 10;
+		number += str[i] - '0';
+		i++;
+	}
+	number *= sign;
+	return (number);
 }
 
 int	main(void)
 {
-	char	str[] = "    ---+--+1234ab567";
-	ft_atoi(str);
-	//printf("%d", ft_atoi(str));
+	char	str[] = "    ---+--+ia1234ab567";
 
+	ft_atoi(str);
+	printf("%d", ft_atoi(str));
 	return (0);
 }
