@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 16:43:29 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/17 13:01:26 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/17 11:20:29 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/17 11:28:56 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *str, char *to_find)
+#include <stdio.h>
+
+int	ft_iterative_factorial(int nb)
 {
 	int	i;
-	int	j;
 
-	i = 0;
-	j = 0;
-	if (to_find[j] == '\0')
+	if (nb < 0)
 	{
-		return (&str[i]);
+		return (0);
 	}
-	while (str[i] != '\0')
+
+	i = nb;
+	while (i == 0)
 	{
-		while (str[i + j] == to_find[j])
-		{
-			j++;
-			if (to_find[j] == '\0')
-			{
-				return (&str[i]);
-			}
-		}
-		j = 0;
-		i++;
+		nb *= nb - 1;
+		i--;
 	}
-	return ((char *)0);
+
+	return (nb);	
+}
+
+int	main(void)
+{
+	int	nb = 2;
+	printf("%d\n", ft_iterative_factorial(nb));
+	return (0);
 }

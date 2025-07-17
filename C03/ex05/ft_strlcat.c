@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 09:18:22 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/17 11:54:55 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:19:16 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,16 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	unsigned int	i;
 	unsigned int	j;
 
-	dest_len = ft_strlen(dest);
 	src_len = ft_strlen(src);
+	dest_len = ft_strlen(dest);
+	if (size == 0)
+	{
+		return (src_len);
+	}
+	if (dest_len > size)
+	{
+		return (size + src_len);
+	}
 	i = 0;
 	j = dest_len;
 	while (j < size && src[i] != '\0')
@@ -39,20 +47,5 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 		i++;
 		j++;
 	}
-	//dest[j] = '\0';
 	return (dest_len + src_len);
-}
-
-#include <stdio.h>
-#include "bsd/bsd.h"
-
-int main(void)
-{
-	char a[] = "Alex";
-	char b[] = "Gas";
-
-	printf("%d\n", ft_strlcat(a, b, 5));
-	printf("%zu", strlcat(a, b, 5));
-
-	return (0);
 }
