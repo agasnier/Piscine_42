@@ -13,43 +13,45 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int	ft_entry(char *argv[]);
+int		ft_entry(char *argv[]);
 char	**ft_init(int len);
 void	ft_param(char **tab, char **argv, int len);
 char	**tab_sol();
 void	ft_brutforce(char **sol, char *pattern, int d, int len, int *ptr);
-int	ft_verif(char **sol, char **tab, int line);
-void	ft_putgrid(char **tab, int len);
+int		print_sol(char **tab, char **sol, int line);
+int		ft_verif(char **tab, int line);
+void	ft_putgrid(char **tab);
 
 
-void	print_sol(char **tab, char **sol, int line, int num)
+int	print_sol(char **tab, char **sol, int line)
 {
-	int j;
-	j = 0;
-	num += 1;
-	if (ft_verif(sol, tab, line) == 0)
+	int i;
+	if (line == 4)
+		return (1);
+
+	i = 0;
+while (i < 24)
+{
+	int j = 0;
+	while (j < 4)
 	{
-		j = 0;
-		while (j < 4)
-		{
-			tab[line + 1][j + 1] = sol[num][j];
-			printf("\n%s\n", sol[num]);
-			j++;
-		}
-		print_sol(tab, sol, line + 1, num);
+		tab[line + 1][j + 1] = sol[i][j];
+		j++;
 	}
-	else if (num < 24)
+
+	if (ft_verif(tab, line) == 0)
 	{
-		printf("%s", "num < 24");
-		print_sol(tab, sol, line, num + 1);
+		if (print_sol(tab, sol, line + 1) == 1)
+			return (1);
 	}
-	else if (num == 24)
-	{
-		printf("%s", "num = 24");
-		num = 0;
-		print_sol(tab, sol, line - 1, num + 1);
-	}
-	return;
+	j = 1;
+	while (j <= 4)
+		tab[line + 1][j++] = ' ';
+
+	i++;
+}
+
+	return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -74,28 +76,11 @@ int	main(int argc, char *argv[])
 	int comp = 0;
 	int *ptr = &comp;
 	ft_brutforce(sol, pattern, 0, len - 2, ptr);
-	
-	ft_putgrid(tab, len);
-	
-	printf("verif: %d\n", ft_verif(sol, tab, 1));
-
-	
-	printf("sol: %s\n", sol[0]);
-	printf("tab: %s\n", tab[1]);
-	
-	print_sol(tab, sol, 0, 0);
-	
+	if (print_sol(tab, sol, 0) == 0)
+		write(1, "Error\n", 6);
+	else	
+		ft_putgrid(tab);
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	ft_putgrid(tab, len);
 	return (0);
 }

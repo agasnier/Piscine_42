@@ -30,8 +30,6 @@ char	**tab_sol()
 
 	len = 4;
 
-
-	//creation de tableau
 	char **sol;
 	
 	sol = (char **)malloc(sizeof(char *) * 24);
@@ -54,20 +52,15 @@ void	ft_brutforce(char **sol, char *pattern, int d, int len, int *ptr)
 {
 	int i;
 	int j;
-
-	//trouve toutes les solutions
 	i = 0;
 	if (d == len - 1)
 	{
-		printf("%s", pattern);
-		printf("\t%d\t", *ptr);
 		j = 0;
 		while (j < len)
 		{
 			sol[*ptr][j] = pattern[j];
 			j++;
 		}
-		printf("%s\n", sol[*ptr]);
 		*ptr += 1;
 	}
 

@@ -1,15 +1,15 @@
 #include <unistd.h>
 
-void	ft_putgrid(char **tab, int len)
+void	ft_putgrid(char **tab)
 {
 	int	i;
 	int	j;
 
-	j = 0;
-	while (j < len)
+	j = 1;
+	while (j <= 4)
 	{
-		i = 0;
-		while (i < len)
+		i = 1;
+		while (i <= 4)
 		{
 			write(1, &tab[j][i], 1);
 			write(1, " ", 1);

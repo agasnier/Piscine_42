@@ -12,119 +12,121 @@
 
 #include <stdio.h>
 
-int	ft_verif_left(char **sol, char **tab, int line, int len)
+int ft_verif_left(char **tab, int line)
 {
-	int     i;
-        int     comp;
-        char    max;
+	int i = 1;
+	int comp = 0;
+	char max = '0';
 
-        i = 0;
-        comp = 0;
-        max = '0';
-
-        while (i < len)
-        {
-                if (sol[line][i] > max)
-                {
-                        max = sol[line][i];
-                        comp++;
-                }
-                i++;
-        }
+	while (i <= 4)
+	{
+		if (tab[line + 1][i] > max)
+		{
+			max = tab[line + 1][i];
+			comp++;
+		}
+		i++;
+	}
 	if (comp + '0' != tab[line + 1][0])
 		return (1);
 	return (0);
-
 }
 
-int     ft_verif_right(char **sol, char **tab, int line, int len)
+int ft_verif_right(char **tab, int line)
 {
-        int     i;
-        int     comp;
-        char    max;
+	int i = 4;
+	int comp = 0;
+	char max = '0';
 
-        i = len - 1;
-        comp = 0;
-        max = '0';
-
-        while (i >= 0)
-        {
-                if (sol[line][i] > max)
-                {
-                        max = sol[line][i];
-                        comp++;
-                }
-                i--;
-        }
-        if (comp + '0' != tab[line + 1][5])
-                return (1);
-        return (0);
-
-}
-
-int     ft_verif_up(char **sol, char **tab, int col, int len)
-{
-        int     i;
-        int     comp;
-        char    max;
-
-        i = 1;
-        comp = 0;
-        max = '0';
-
-        while (i < len )
-        {
-                if (sol[i][col] > max)
-                {
-                        max = sol[i][col];
-                        comp++;
-                }
-                i++;
-        }
-        if (comp + '0' > tab[0][col + 1])
-                return (1);
-        return (0);
-
-}
-
-int     ft_verif_down(char **sol, char **tab, int col, int len)
-{
-        int     i;
-        int     comp;
-        char    max;
-
-        i = len - 2;
-        comp = 0;
-        max = '0';
-
-        while (i > 0 )
-        {
-                if (sol[i][col] > max)
-                {
-                        max = sol[i][col];
-                        comp++;
-                }
-                i--;
-        }
-        if (comp + '0' > tab[0][col + 1])
-                return (1);
-        return (0);
-
-}
-
-int	ft_verif(char **sol, char **tab, int line)
-{
-	int i = 0;
-	int len = 6;
-	if (ft_verif_left(sol, tab, line, len) == 1 || ft_verif_right(sol, tab, line, len) == 1)
-		return (1);
-	
-	while (i < 4)
+	while (i >= 1)
 	{
-		if (ft_verif_up(sol, tab, i, len) == 1 || ft_verif_down(sol, tab, i, len) == 1)
-			return (1);
+		if (tab[line + 1][i] > max)
+		{
+			max = tab[line + 1][i];
+			comp++;
+		}
+		i--;
+	}
+	if (comp + '0' != tab[line + 1][5])
+		return (1);
+	return (0);
+}
+
+int ft_verif_up(char **tab, int col)
+{
+	int i = 1;
+	int comp = 0;
+	char max = '0';
+
+	while (i <= 4)
+	{
+		if (tab[i][col + 1] > max)
+		{
+			max = tab[i][col + 1];
+			comp++;
+		}
 		i++;
 	}
+	if (comp + '0' != tab[0][col + 1])
+		return (1);
+	return (0);
+}
 
+int ft_verif_down(char **tab, int col)
+{
+	int i = 4;
+	int comp = 0;
+	char max = '0';
+
+	while (i >= 1)
+	{
+		if (tab[i][col + 1] > max)
+		{
+			max = tab[i][col + 1];
+			comp++;
+		}
+		i--;
+	}
+	if (comp + '0' != tab[5][col + 1])
+		return (1);
+	return (0);
+}
+
+int ft_col(char **tab, int line)
+{
+	int col, i, j;
+	for (col = 1; col <= 4; col++)
+	{
+		for (i = 1; i <= line + 1; i++)
+		{
+			for (j = i + 1; j <= line + 1; j++)
+			{
+				if (tab[i][col] == tab[j][col])
+					return (0);
+			}
+		}
+	}
+	return (1);
+}
+
+int ft_verif(char **tab, int line)
+{
+	int i = 0;
+
+	if (ft_verif_left(tab, line) == 1 || ft_verif_right( tab, line) == 1)
+		return (1);
+
+	if (!ft_col(tab, line))
+		return (1);
+
+	if (line == 3)
+	{
+		while (i < 4)
+		{
+			if (ft_verif_up(tab, i) == 1 || ft_verif_down(tab, i) == 1)
+				return (1);
+			i++;
+		}
+	}
 	return (0);
 }
