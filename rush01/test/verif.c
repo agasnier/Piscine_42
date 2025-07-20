@@ -47,7 +47,7 @@ int     ft_verif_right(char **sol, char **tab, int line, int len)
         comp = 0;
         max = '0';
 
-        while (i > 0)
+        while (i >= 0)
         {
                 if (sol[line][i] > max)
                 {
@@ -112,14 +112,19 @@ int     ft_verif_down(char **sol, char **tab, int col, int len)
 
 }
 
-int	ft_verif(char **sol, char **tab, int line, int col)
+int	ft_verif(char **sol, char **tab, int line)
 {
+	int i = 0;
 	int len = 6;
 	if (ft_verif_left(sol, tab, line, len) == 1 || ft_verif_right(sol, tab, line, len) == 1)
 		return (1);
 	
-	if (ft_verif_up(sol, tab, col, len) == 1 || ft_verif_down(sol, tab, col, len) == 1)
-		return (1);
+	while (i < 4)
+	{
+		if (ft_verif_up(sol, tab, i, len) == 1 || ft_verif_down(sol, tab, i, len) == 1)
+			return (1);
+		i++;
+	}
 
 	return (0);
 }

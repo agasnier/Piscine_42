@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   putchar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/20 10:36:10 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/20 13:43:00 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/20 13:58:51 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/20 13:58:53 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_entry(char *argv[]);
-char	**ft_init(int len);
-void	ft_param(char **tab, char **argv, int len);
-void	ft_resolve(char **tab);
-void	ft_putgrid(char **tab, int len);
-
-int	main(int argc, char *argv[])
+void	ft_putgrid(char **tab, int len)
 {
-	int	len;
-	char	**tab;
+	int	i;
+	int	j;
 
-	len = 4;
-	len += 2;
-	if (argc != 2 || ft_entry(argv) == 1)
+	j = 1;
+	while (j < len - 1)
 	{
-		write(1, "Error\n", 6);
-		return (1);
+		i = 1;
+		while (i < len - 1)
+		{
+			write(1, &tab[j][i], 1);
+			write(1, " ", 1);
+			i++;
+		}
+		write(1, "\n", 1);
+		j++;
 	}
-	tab = ft_init(len);
-	ft_param(tab, argv, len);
-	ft_resolve(tab);
-	ft_putgrid(tab, len);
 }
