@@ -94,17 +94,26 @@ int ft_verif_down(char **tab, int col)
 
 int ft_col(char **tab, int line)
 {
-	int col, i, j;
-	for (col = 1; col <= 4; col++)
-	{
-		for (i = 1; i <= line + 1; i++)
+	int col;
+        int i;
+        int j;
+
+        col = 1;
+	while (col <= 4)
+	{       
+                i = 1;
+		while (i <= line + 1)
 		{
-			for (j = i + 1; j <= line + 1; j++)
+                        j = i + 1;
+			while (j <= line + 1)
 			{
 				if (tab[i][col] == tab[j][col])
 					return (0);
+                                j++;
 			}
+                        i++;
 		}
+                col++;
 	}
 	return (1);
 }
