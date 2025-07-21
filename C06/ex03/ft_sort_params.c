@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*int	ft_strcmp(char *s1, char *s2)
+#include <unistd.h>
+
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
@@ -24,35 +26,59 @@
 		return (s1[i] - s2[i]);
 	}
 	return (0);
-}*/
-#include <stdio.h>
-int	ft_swap(char *tab1, char *tab2)
-{
-	char *tmp;
-	
-	tmp = tab1;
-	printf("%s tab2\n", tab2);
-	tab1 = tab2;
-	printf("%s tab2\n", tab2);
-	tab2 = tmp;
-	printf("%s tab2 \n", tab2);
-	return (1);
 }
 
 
+void	ft_swap(char **tab1, char **tab2)
+{
+	char *tmp;
+	
+	tmp = *tab1;
+	*tab1 = *tab2;
+	*tab2 = tmp;
+}
 
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
+}
 
 
 
 
 int	main(int argc, char *argv[])
 {	
-	if (argc)
+	int	n;
+	int	m;
+	int i;
+	
+	n = 1;
+	while (n < argc - 1)
 	{
-		ft_swap(argv[0], argv[1]);
-		printf("%s\n", argv[0]);
-		printf("%s", argv[1]);
-		
+		m = 1;
+		while (m < argc - 1)
+		{
+			if (ft_strcmp(argv[m], argv[m + 1]) > 0)
+				ft_swap(&argv[m], &argv[m + 1]);
+			m++;
+		}
+		n++;
+
+	}
+
+	i = 1;
+	while (i < argc)
+	{
+		ft_putstr(argv[i]);
+		i++;
 	}
 	return (0);
 }

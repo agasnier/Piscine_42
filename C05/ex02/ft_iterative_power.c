@@ -14,9 +14,9 @@ int	ft_iterative_power(int nb, int power)
 {
 	int	res;
 
-	if (nb == 0 && power == 0)
+	if (power == 0)
 		return (1);
-	if (power <= 0)
+	if (power < 0)
 		return (0);
 	res = nb;
 	while (power >= 2)
