@@ -22,11 +22,15 @@ int	ft_atoi(char *str)
 	sign = 1;
 	while (!(str[i] >= '0' && str[i] <= '9'))
 	{
-		if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
+		if (str[i] >= 9 && str[i] <= 13)
+		{
+			continue;
+		}
+		else if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
 		{
 			return (0);
 		}
-		if (str[i] == '-')
+		else if (str[i] == '-')
 		{
 			sign *= -1;
 		}

@@ -48,15 +48,15 @@ char	**tab_sol()
 	return (sol);
 }
 
-void	ft_brutforce(char **sol, char *pattern, int d, int len, int *ptr)
+void	ft_brutforce(char **sol, char *pattern, int d, int *ptr)
 {
 	int i;
 	int j;
 	i = 0;
-	if (d == len - 1)
+	if (d == 4 - 1)
 	{
 		j = 0;
-		while (j < len)
+		while (j < 4)
 		{
 			sol[*ptr][j] = pattern[j];
 			j++;
@@ -68,10 +68,10 @@ void	ft_brutforce(char **sol, char *pattern, int d, int len, int *ptr)
 	else
 	{
 		i = d;
-		while (i <= len - 1)
+		while (i <= 4 - 1)
 		{
 			ft_swap(&pattern[d], &pattern[i]);
-			ft_brutforce(sol, pattern, d + 1, len, ptr);
+			ft_brutforce(sol, pattern, d + 1, ptr);
 			ft_swap(&pattern[d], &pattern[i]);
 			i++;
 		}

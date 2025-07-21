@@ -17,7 +17,7 @@ int		ft_entry(char *argv[]);
 char	**ft_init(int len);
 void	ft_param(char **tab, char **argv, int len);
 char	**tab_sol();
-void	ft_brutforce(char **sol, char *pattern, int d, int len, int *ptr);
+void	ft_brutforce(char **sol, char *pattern, int d, int *ptr);
 int		print_sol(char **tab, char **sol, int line);
 int		ft_verif(char **tab, int line);
 void	ft_putgrid(char **tab);
@@ -75,7 +75,7 @@ int	main(int argc, char *argv[])
 	char **sol = tab_sol();
 	int comp = 0;
 	int *ptr = &comp;
-	ft_brutforce(sol, pattern, 0, len - 2, ptr);
+	ft_brutforce(sol, pattern, 0, ptr);
 	if (print_sol(tab, sol, 0) == 0)
 		write(1, "Error\n", 6);
 	else	
