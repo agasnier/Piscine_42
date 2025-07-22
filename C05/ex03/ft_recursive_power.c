@@ -6,13 +6,13 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 16:20:21 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/21 10:33:39 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/22 09:38:02 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_recursive_power(int nb, int power)
 {
-	if (nb == 0 && power == 0)
+	if (power == 0)
 		return (1);
 	if (power <= 0)
 		return (0);
