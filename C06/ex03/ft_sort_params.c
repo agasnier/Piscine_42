@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 12:36:47 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/21 16:28:01 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/21 16:54:57 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ int	main(int argc, char *argv[])
 {	
 	if (argc)
 	{
-		ft_swap(argv[0], argv[1]);
-		printf("%s\n", argv[0]);
-		printf("%s", argv[1]);
+		if (ft_swap(argv[0], argv[1]) == 1)
+		{
+			printf("%s\n", argv[0]);
+			printf("%s", argv[1]);
+		}
 		
 	}
 	return (0);
