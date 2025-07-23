@@ -38,6 +38,8 @@ int	ft_verif_base(char *base)
 	while (i < len)
 	{
 		j = i + 1;
+		if (base[i] == '+' || base[i] == '-')
+			return (1);
 		while (j < len)
 		{
 			if (base[i] == base[j])
