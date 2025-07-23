@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:30:04 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/22 16:51:09 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/23 09:21:52 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,4 @@ void	ft_putnbr_base(int nbr, char *base)
 			ft_putnbr_base(nbr / len, base);
 		write(1, &base[nbr % len], 1);
 	}
-}
-
-int	main(void)
-{
-	int nbr = -987654321;
-	char base[] = "0123456789ABCDEF";
-	ft_putnbr_base(nbr, base);
 }
