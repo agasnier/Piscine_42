@@ -10,51 +10,89 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include <stdio.h>
+#include <stdlib.h>
 
 
 
 
 //calcul de len entiere + sep * (size - 1)
-int	ft_len_size(int size, char **strs, char *sep)
+int	ft_str_len(char *str)
 {
 	int	i;
-	int len;
 
 	i = 0;
-	j = 0;
-	len = 0 + (size - 1);
-	while (i <= size)
+	while (str[i] != '\0')
 	{
-		j = 0;
-		while (strs[i][j] != '\0')
-		{
-			len++;
-			j++;
-		}
 		i++;
 	}
+	return (i);
+}
+
+int ft_strs_len(int size, char **strs, char *sep)
+{
+	int	len;
+	int	i;
+
+	len = 0;
+	i = 0;
+	while (i < size)
+	{
+		len += ft_str_len(strs[i]);
+		i++;
+	}
+	len += (size - 1) * ft_str_len(sep);
+
 	return (len);
 }
 
 
-
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	//function calcul de la taille entiere
+	int	i;
+	int	j;
+	int len;
+	int	k;
+	char	*ptr;
 
-
-	//malloc pour creation string
-
-
-	//iz size = 0
-
-
-
-
-
-	retrun (str);
+	len = ft_strs_len(size, strs, sep);
+	ptr = malloc(sizeof(char) * len + 1);
+	k = 0;
+	j = 0;
+	while (j < size)
+	{
+		i = 0;
+		while (strs[j][i] != '\0')
+		{
+			ptr[k] = strs[j][i];
+			i++;
+			k++;
+		}
+		i = 0;
+		while (sep[i] != '\0' && j < size - 1)
+		{
+			ptr[k] = sep[i];
+			i++;
+			k++;
+		}
+		j++;
+	}
+	ptr[k] = '\0';
+	return (ptr);
 }
 
+int	main(void)
+{
+	char *strs[3];
+	strs[0] = "Alex";
+	strs[1] = "Alba";
+	strs[2] = "Dian";
+	char *sep = ", ";
+	printf("%s" ,ft_strjoin(3, strs, sep));
+
+
+
+	return (0);
+}
 
 
