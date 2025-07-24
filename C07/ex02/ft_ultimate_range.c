@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:54:48 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/23 16:22:41 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:27:39 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,42 @@ int	ft_ultimate_range(int **range, int min, int max)
 {
 	int	len;
 	int	i;
+	int *ptr;
 	if (min >= max)
+	{
+		*range = NULL;
 		return (0);
+	}
 
 	len = max - min;
 
-	range = malloc((sizeof(int *) * len));
-	if (!(range))
-		return (0);
+	ptr = malloc(sizeof(int) * len);
+	if (ptr == NULL)
+		return (-1);
+
+	*range = ptr;
 
 	i = 0;
 	while (i < len)
 	{
-		range[i] = malloc((sizeof(int) * len));
+		ptr[i] = min + i;
 		i++;
 	}
 
 
+
+
+////////////////////////////////////////////////////////
 	i = 0;
 	while (i < len)
 	{
-		range[i][0] = min;
-		min++;
-		i++;
-	}
-	
-	i = 0;
-	while (i < len)
-	{
-		printf("%d\n", range[i][0]);
+		printf("%d\n", range[0][i]);
 		i++;
 
 	}
 
-	return (0);
+/////////////////////////////////////////////////////////////
+	return (len);
 
 }
 

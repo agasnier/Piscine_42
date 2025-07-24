@@ -32,8 +32,8 @@ char	*ft_strdup(char *src)
 
 	len = ft_str_len(src);
 	ptr = malloc((sizeof(char) * len) + 1);
-	if (!(ptr))
-		return (0);
+	if (ptr == NULL)
+		return (NULL);
 	i = 0;
 	while (src[i] != '\0')
 	{
@@ -42,4 +42,15 @@ char	*ft_strdup(char *src)
 	}
 	ptr[i] = '\0';
 	return (ptr);
+}
+
+#include <stdio.h>
+
+int main(void)
+{
+	char a[] = "Alex";
+	printf("%s", ft_strdup(a));
+
+
+	return (0);
 }

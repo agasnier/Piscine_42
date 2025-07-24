@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:23:56 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/23 16:56:54 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:15:47 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,12 @@ int ft_strs_len(int size, char **strs, char *sep)
 	return (len);
 }
 
-
-char	*ft_strjoin(int size, char **strs, char *sep)
+char *ft_remplissage(int size, char ** strs, char *sep, char *ptr)
 {
-	int	i;
-	int	j;
-	int len;
-	int	k;
-	char	*ptr;
-
-	len = ft_strs_len(size, strs, sep);
-	ptr = malloc(sizeof(char) * len + 1);
+	int k;
+	int j;
+	int i;
+	
 	k = 0;
 	j = 0;
 	while (j < size)
@@ -78,6 +73,24 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		j++;
 	}
 	ptr[k] = '\0';
+	return (ptr);
+}
+
+
+char	*ft_strjoin(int size, char **strs, char *sep)
+{
+	int len;
+	char	*ptr;
+
+	len = ft_strs_len(size, strs, sep);
+	if (size == 0)
+		len = 0;
+	ptr = malloc(sizeof(char) * len + 1);
+	if (ptr == NULL)
+		return (NULL);
+
+	ft_remplissage(size, strs, sep, ptr);
+
 	return (ptr);
 }
 
