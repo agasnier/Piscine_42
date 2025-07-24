@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:23:56 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/24 10:15:47 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:04:26 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int ft_strs_len(int size, char **strs, char *sep)
 	return (len);
 }
 
-char *ft_remplissage(int size, char ** strs, char *sep, char *ptr)
+void ft_remplissage(int size, char ** strs, char *sep, char *ptr)
 {
 	int k;
 	int j;
@@ -73,7 +73,6 @@ char *ft_remplissage(int size, char ** strs, char *sep, char *ptr)
 		j++;
 	}
 	ptr[k] = '\0';
-	return (ptr);
 }
 
 
