@@ -34,7 +34,7 @@ int	ft_verif_base(char *base, int len)
 	while (i < len)
 	{
 		j = i + 1;
-		if (base[i] == '+' || base[i] == '-' || base[i] == ' ')
+		if (base[i] == '+' || base[i] == '-' || base[i] == ' ' || (base[i] >= 9 && base[i] <= 13))
 			return (1);
 		while (j < len)
 		{
