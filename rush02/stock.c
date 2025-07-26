@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:13:13 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/26 11:56:26 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/26 13:14:51 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 
 //printf
 #include <stdio.h>
+
+
+struct	dict
+{
+	char	*number;
+	char	*carac;
+};
 
 char	*ft_stock(void)
 {
@@ -68,22 +75,38 @@ char	*ft_stock(void)
 	return (str);
 }
 
-struct dict **ft_pars(struct dict **paires, char *str)
+struct dict **ft_pars(struct dict **paires, char *str, int count)
 {
 	int	i;
 	int	index;
-
+	int	j;
+	
+	count = 0;
 	i = 0;
 	index = 0;
-	while (str[i])
+	while (i < 1)
 	{
-		while (str[i] >= '0' && str[i] <= '9')
-			printf("%c\n", str[i]);
-		while (str[i] >= '!' && str[i] <= '~')
-			printf("%c\n", str[i]);
+		j = 0;
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			while (str[i + j] >= '0' && str [i + j] <= '9')
+				j++;
+			paires[index]->number = malloc(sizeof(char) * (j + 1));
 
+		}
+		j = 0;
+		else if (str[i] >= '!' && str[i] <= '~')
+		{
+			while (str[i] >= '!' && str[i] <= '~')
+				j++;
+			paires[index]->carac = malloc(sizeof(char) * (j + 1));
 
-
+		}
+		else if (str[i] == '\n' && str[i + 1] != '\0')
+		{
+			index++;
+			printf("%d\n", index);
+		}
 		i++;
 	}
 
@@ -99,7 +122,7 @@ struct dict	**ft_struct(char *str)
 
 	count = 0;
 	i = 0;
-	while(str[i])
+	while(str[i] != '\0')
 	{
 		if (str[i] == '\n')
 			count++;
@@ -109,27 +132,23 @@ struct dict	**ft_struct(char *str)
 	printf("Nombre de paires: %d\n\n", count);
 
 //creer le tableau de strucs
-	struct	dict
-	{
-		char	*number;
-		char	*carac;
 
-	};
 
 	struct dict **paires;
 	
-	paires = malloc((sizeof(struct dict *) * count) + 1);
+	paires = malloc(sizeof(struct dict *) * (count + 1));
 	if (paires == NULL)
 		return(NULL);
 	paires[count] = NULL;
 
-	ft_pars(paires, str);
+	ft_pars(paires, str, count);
 
 	return (paires);
 }
 
 int	main(void)
 {
+
 	char *str;
 
 	str = ft_stock();
