@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:13:13 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/26 13:14:51 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/26 13:54:00 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,21 @@ char	*ft_stock(void)
 	return (str);
 }
 
+void	ft_puttab(char *dst, char *src, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+
+	
+}
+
 struct dict **ft_pars(struct dict **paires, char *str, int count)
 {
 	int	i;
@@ -92,27 +107,27 @@ struct dict **ft_pars(struct dict **paires, char *str, int count)
 			while (str[i + j] >= '0' && str [i + j] <= '9')
 				j++;
 			paires[index]->number = malloc(sizeof(char) * (j + 1));
+			ft_puttab(paires[index]->number, &str[i], j);
 
 		}
-		j = 0;
 		else if (str[i] >= '!' && str[i] <= '~')
 		{
 			while (str[i] >= '!' && str[i] <= '~')
 				j++;
 			paires[index]->carac = malloc(sizeof(char) * (j + 1));
+			ft_puttab(paires[index]->carac, &str[i], j);
 
 		}
 		else if (str[i] == '\n' && str[i + 1] != '\0')
-		{
 			index++;
-			printf("%d\n", index);
-		}
 		i++;
 	}
 
 
 	return (paires);
 }
+
+
 
 struct dict	**ft_struct(char *str)
 {
