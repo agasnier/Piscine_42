@@ -6,16 +6,16 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:13:13 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/26 14:24:40 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:12:18 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
-#include <siftdlib.h>
+#include <stdlib.h>
 #include <stdio.h>
 
-struct	s_dict
+struct	dict
 {
 	char	*number;
 	char	*carac;
@@ -61,7 +61,7 @@ void	ft_puttab(char *dst, char *src, int n)
 	dst[i] = '\0';
 }
 
-struct dict	**ft_pars(struct s_dict **paires, char *str)
+struct dict	**ft_pars(struct dict **paires, char *str)
 {
 	int	i;
 	int	index;
@@ -69,7 +69,7 @@ struct dict	**ft_pars(struct s_dict **paires, char *str)
 
 	i = 0;
 	index = 0;
-	while (i < 1)
+	while (str[i] != '\0')
 	{
 		j = 0;
 		if (str[i] >= '0' && str[i] <= '9')
@@ -79,16 +79,18 @@ struct dict	**ft_pars(struct s_dict **paires, char *str)
 			paires[index]->number = malloc(sizeof(char) * (j + 1));
 			ft_puttab(paires[index]->number, &str[i], j);
 		}
-		else if (str[i] >= '!' && str[i] <= '~')
+		j = 0;
+		if (str[i] >= '!' && str[i] <= '~')
 		{
-			while (str[i] >= '!' && str[i] <= '~')
+			while (str[i + j] >= '!' && str[i + j] <= '~')
 				j++;
 			paires[index]->carac = malloc(sizeof(char) * (j + 1));
 			ft_puttab(paires[index]->carac, &str[i], j);
 		}
-		else if (str[i] == '\n' && str[i + 1] != '\0')
+		if (str[i] == '\n' && str[i + 1] != '\0')
 			index++;
 		i++;
+		printf("%d\n", index);
 	}
 	return (paires);
 }
@@ -104,13 +106,13 @@ struct dict	**ft_struct(char *str)
 	while (str[i++] != '\0')
 		if (str[i] == '\n')
 			count++;
-	paires = malloc(sizeof(struct s_dict *) * (count + 1));
+	paires = malloc(sizeof(struct dict *) * (count + 1));
 	if (paires == NULL)
 		return (NULL);
 	i = 0;
 	while (i < count)
 	{
-		paires[i] = malloc(sizeof(struct s_dict));
+		paires[i] = malloc(sizeof(struct dict));
 		if (paires[i] == NULL)
 			return (NULL);
 		i++;
@@ -128,6 +130,6 @@ int	main(void)
 	str = ft_stock();
 	printf("\nImpression du dict:\n%s\n", str);
 	dict = ft_struct(str);
-	printf("%s", dict[1]->number);
+	printf("\n\n struc:%s\n", dict[1]->carac);
 	return (0);
 }
