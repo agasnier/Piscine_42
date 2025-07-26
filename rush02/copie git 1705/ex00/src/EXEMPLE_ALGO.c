@@ -1,0 +1,31 @@
+//TRANSFORMER UN CHIFFRE EN TOUTE LETTRE 123 --> CENT-VING-TROIS
+//IDÉE 1 : TRAITER CENTAINE DIZAINE UNITE --> LEN_NB = 10² 
+//#*****************************************************************************************#
+//
+// CAS 1 :  TRAITER SI LEN_NB = 10² donc 100 // IMAGINONS QU'IL YA PAS DE CENTAINE --> 023 
+// 023 = 0 * 100 + 2 * 10 + 3               1 233 = 10 * 100 + 2 * 100 + 3 * 10 + 3    
+// ^^^                                      ^ ^^^
+// 0 CENTAINE + 2 DIZAINE + 3 UNITE    ||   10 CENTAINES + 2 CENTAINES + 3 DIZAINES + 3 UNITÉS
+// ON PEUT FAIRE AUSSI SI ON A 323 PAR EXEMPLE FAIRE 3 * 10³ + 2 + 10² + 3 
+// A VOIR LEQUEL EST LE PLUS OPTI POUR LES LONG LONG INT 
+//
+// LOGIQUE POUR IMPRIMER STRING PAR STRING LE NOMBRE EN ENTRÉE 
+// 0: zero
+// 1: one
+// 2: two
+// 3: three
+// 4: four
+// 5: five
+// 6: six
+// 7: seven
+// 8: eight
+// 9: nine
+// 10: ten
+// LE CHIFFRE 10 = LIGNE OU INDEX[10] DANS LE DICTIONNAIRE AINSI DE SUITE POUR CHAQUE CHIFFRE 
+// 123  = 1 CENTAINE + 2 DIZAINE + 3 UNITÉ = DONC DANS LE DICTIONNAIRE ON DOIT SORTIR 
+// 100 : HUNDRED + 20 : TWENTY + 3 : THREE =  HUNDRED TWENTY THREE 
+// 
+// CAS 2 : OU ON A 100 000 OU ONE HUNDRED THOUSAND 
+// 100 000  =  100 * 1 000   = DANS LE DICO ON DOIT ARRIVER A FAIRE
+// 1: ONE + 100: HUNDRED + 1000:THOUSAND
+//
