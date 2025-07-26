@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:13:13 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/26 10:58:53 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/26 11:56:26 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ char	*ft_stock(void)
 	if (t_read == - 1)
 		return (NULL);
 	
-	tmp[t_read + 1] = '\0';
+	tmp[t_read] = '\0';
 
 
-//creer un tableau avec malloc de la taille totale du document
+//creer un str avec malloc de la taille totale du document
 	str = malloc((sizeof(char) * t_read) + 1);
 
 //remplissage du tableau avec tmp
@@ -68,6 +68,29 @@ char	*ft_stock(void)
 	return (str);
 }
 
+struct dict **ft_pars(struct dict **paires, char *str)
+{
+	int	i;
+	int	index;
+
+	i = 0;
+	index = 0;
+	while (str[i])
+	{
+		while (str[i] >= '0' && str[i] <= '9')
+			printf("%c\n", str[i]);
+		while (str[i] >= '!' && str[i] <= '~')
+			printf("%c\n", str[i]);
+
+
+
+		i++;
+	}
+
+
+	return (paires);
+}
+
 struct dict	**ft_struct(char *str)
 {
 // count le nombre de paires
@@ -83,8 +106,9 @@ struct dict	**ft_struct(char *str)
 		i++;
 	}
 
-	printf("Nombre de paires: %d\n", count);
+	printf("Nombre de paires: %d\n\n", count);
 
+//creer le tableau de strucs
 	struct	dict
 	{
 		char	*number;
@@ -94,16 +118,12 @@ struct dict	**ft_struct(char *str)
 
 	struct dict **paires;
 	
-	i = 0;
-	while (str[i] != '\n')
-	{
-		printf("%c", str[i]);
-		i++;
-	}
-	
 	paires = malloc((sizeof(struct dict *) * count) + 1);
 	if (paires == NULL)
 		return(NULL);
+	paires[count] = NULL;
+
+	ft_pars(paires, str);
 
 	return (paires);
 }
@@ -113,7 +133,7 @@ int	main(void)
 	char *str;
 
 	str = ft_stock();
-	//printf("%s", str);
+	printf("\nImpression du dict:\n%s\n", str);
 	ft_struct(str);
 
 
