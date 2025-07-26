@@ -25,7 +25,7 @@ char	*ft_stock(void)
 	fd = open("numbers.dict", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	t_read = read(fd, tmp, 1023);
+	t_read = read(fd, tmp, 1024);
 	if (t_read == -1)
 		return (NULL);
 	tmp[t_read] = '\0';
@@ -55,38 +55,12 @@ void	ft_puttab(char *dst, char *src, int j)
 	dst[i] = '\0';
 }
 
-
-int	ft_str_int(char *str)
-{
-	int i;
-	int nbr;
-
-	i = 0;
-	nbr = 0;
-	while (str[i])
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-		{	
-			nbr = nbr * 10;
-			nbr += str[i] - '0';
-		}
-		else
-			break;
-		i++;
-	}
-
-
-	return (nbr);
-}
-
-
 // parser la phrase et mettre le nombre dans le struct associé
 int	ft_puttab_number(struct s_dict **paires, char *str)
 {
 	int i;
 	int index;
 	int j;
-	char	tmp[32];
 
 	i = 0;
 	index = 0;
@@ -97,8 +71,10 @@ int	ft_puttab_number(struct s_dict **paires, char *str)
 		{
 			while (str[i + j] >= '0' && str[i + j] <= '9')
 				j++;
-			ft_puttab(tmp, &str[i], j);
-			paires[index]->number = ft_str_int(tmp);
+			paires[index]->number = malloc(sizeof(char) * (j + 1));
+			if (paires[index]->number == NULL)
+				return (1);
+			ft_puttab(paires[index]->number, &str[i], j);
 		}
 		i += j;
 		if (str[i] == '\n' && str[i + 1] != '\0')
@@ -168,42 +144,10 @@ struct	s_dict	**ft_struct(char *str)
 		i++;
 	}
 	paires[i] = NULL;
-	if (ft_puttab_number(paires, str) == 1 || ft_puttab_carac(paires, str) == 1)
+	if (ft_puttab_number(paires, str) == 1|| ft_puttab_carac(paires, str) == 1)
 		return (NULL);
 	return (paires);
 }
-
-//ecris à la place de printf
-void	ft_putchar(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{	
-		write(1, &str[i], 1);
-		i++;
-	}
-
-
-}
-
-//gavec un int en entrée, renvoi le mot associé
-char	*ft_find(struct s_dict **dict, int nbr)
-{
-	int	i;
-
-	i = 0;
-	while (dict[i] != NULL)
-	{
-		if (dict[i]->number == nbr)
-			return (dict[i]->carac);
-		i++;
-	}
-	return (NULL);
-}
-
-
 
 //main de test
 int	main(void)
@@ -213,21 +157,13 @@ int	main(void)
 
 	str = ft_stock();
 	dict = ft_struct(str);
-	
-	
 	int i;
 	i = 0;
 	while(dict[i] != NULL)
 	{
-		printf("Number: %d\n", dict[i]->number);
+		printf("Number: %s\n", dict[i]->number);
 		printf("Caractere: %s\n\n", dict[i]->carac);
 		i++;
 	}
-	printf("\n%s\n\n\n", ft_find(dict, 10));
-
-
-
 	return (0);
-
-
 }

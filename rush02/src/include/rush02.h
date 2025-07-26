@@ -28,14 +28,14 @@
 
 typedef struct	s_dict
 {
-	char	*number;
+	int number;
 	char	*carac;
 } t_Dict;
 
 typedef struct s_my_struct
 {
 	int	my_var;
-	char	*my_string;
+	int	my_string;
 	char	my_char;
 }	t_My_struct;
 
