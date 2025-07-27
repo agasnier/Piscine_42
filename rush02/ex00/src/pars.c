@@ -6,11 +6,11 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:02:40 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/27 17:01:54 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:30:33 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/rush02.h"
+#include "rush02.h"
 
 int	ft_verif(char *str, int *j)
 {
@@ -71,21 +71,23 @@ void	ft_pars(char *str, char *tmp)
 			str[j++] = tmp[i++];
 		while (tmp[i] == ' ')
 			i++;
-		while ((tmp[i] >= ' ' && tmp[i] <= '~') || tmp[i] == '\n')
+		while ((tmp[i] >= ' ' && tmp[i] <= '~'))
 			str[j++] = tmp[i++];
-		i++;	
+		while (tmp[i] == '\n')
+			i++;
+		str[j++] = '\n';
 	}
 	str[j] = '\0';
 }
 
-char	*ft_stock(void)
+char	*ft_stock(char *path)
 {
 	int		fd;
 	int		t_read;
 	char	tmp[2048];
 	char	*str;
 
-	fd = open("numbers.dict", O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	t_read = read(fd, tmp, 2048);
@@ -105,52 +107,30 @@ char	*ft_stock(void)
 	return (str);
 }
 
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] == s2[i] && (s1[i] != '\0' && s2[i] != '\0'))
-	{
-		i++;
-	}
-	if (s1[i] != s2[i])
-	{
-		return (s1[i] - s2[i]);
-	}
-	return (0);
-}
-
-
-
-
-
+/*
 int	main(void)
 {
 	struct s_dict	**dict;
 	char			*str;
 	int				i;
-	/* -------------------------------------------  */
 	str = ft_stock();
 	if (str == NULL)
 		return (1);
-	/* --------------------------------------------*/	
 	dict = ft_struct(str);
 	if (dict == NULL)
 		return (1);
-	/*------------------------------------------------*/
 	
-	//char test[] = "100";
+	char test[] = "100";
 	i = 0;
 	while (dict[i] != NULL && i < 10)
 	{
-		//if (ft_strcmp(dict[i]->number, test) == 0)
-		//{
+		if (ft_strcmp(dict[i]->number, test) == 0)
+		{
 			printf("\nNumber:%s\n", dict[i]->number);
 			printf("Caractere: %s\n", dict[i]->carac);
-		//}
+		}
 		i++;
 	}
 	return (0);
 }
+*/

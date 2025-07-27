@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:02:40 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/27 18:02:31 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:06:18 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_pars(char *str, char *tmp)
 			i++;
 		while ((tmp[i] >= ' ' && tmp[i] <= '~'))
 			str[j++] = tmp[i++];
-		while (str[i] == '\n')
+		while (tmp[i] == '\n')
 			i++;
 		str[j++] = '\n';	
 	}

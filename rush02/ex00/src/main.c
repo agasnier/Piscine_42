@@ -6,46 +6,17 @@
 /*   By: amartel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 10:51:02 by amartel           #+#    #+#             */
-/*   Updated: 2025/07/26 14:16:49 by amartel          ###   ########.fr       */
+/*   Updated: 2025/07/27 17:55:41 by elibouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush02.h"
 
-int	ft_atoi(char *str)
-{
-	int	nb;
-	int	i;
-	int negatif;
-	
-	nb = 0;
-	negatif = 0;
-	i = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if ((str[i] == '+' || str[i] == '-') && 
-		(str[i + 1] == '-' || str[i + 1] == '+'))
-		return (0);
-	else if (str[i] == '-')
-	{
-		negatif++;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		nb = nb * 10 + (str[i] - 48);
-		i++;
-	}
-	if (negatif == 1)
-		nb *= -1;
-	return (nb);
-}
-
 char	*ft_rev(char *str)
 {
-	int i;
-	int	j;
-	char tmp;
+	int		i;
+	int		j;
+	char	tmp;
 
 	i = 0;
 	j = 0;
@@ -58,20 +29,20 @@ char	*ft_rev(char *str)
 		str[i - j - 1] = tmp;
 		j++;
 	}
-	return(str);
+	return (str);
 }
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
+char	*ft_strcat(char *dest, char *src)
 {
 	unsigned int	i;
 	unsigned int	j;
-	
+
 	dest = ft_rev(dest);
 	i = 0;
 	while (dest[i] != '\0')
 		i++;
 	j = 0;
-	while (src[j] != '\0' && j < nb)
+	while (src[j] != '\0')
 	{
 		dest[i] = src[j];
 		j++;
@@ -82,30 +53,71 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 	return (dest);
 }
 
+int	ft_number_is_valid(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_dict_is_exist(char *str)
 {
 	char	*base_file;
 	char	*ptr;
-	
-	base_file = "/tcid/";
-	ptr = ft_strncat(str, base_file, 14);
-	printf("%s\n", ptr);
-	if(open(ptr ,O_RDONLY))	
-		return (0);
+	int		file;
+
+	base_file = "/tcid";
+	ptr = ft_strcat(str, base_file);
+	file = open(ptr, O_RDONLY);
+	if (file == -1)
+		return (1);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
+	struct s_dict	**dict;
+	char *str;
+
 	if (argc == 2)
 	{
-		ft_atoi(argv[1]);
+		if (ft_number_is_valid(argv[1]) == 1)
+		{
+			write(1, "error\n", 6);
+			return (1);
+		}
+		str = ft_stock("dict/en.dict");
+		dict = ft_struct(str);
+		ft_convert_int_to_char(argv[1], 0, dict);
 	}
 	else if (argc == 3)
 	{
-		ft_dict_is_exist(argv[1]);
-		ft_atoi(argv[2]);
+		if (ft_number_is_valid(argv[2]) == 1)
+		{
+			write(1, "error\n", 6);
+			return (1);
+		}
+		if (ft_dict_is_exist(argv[1]) == 1)
+		{
+			write(1, "Dict Error\n", 11);
+			return (1);
+		}
+		str = ft_stock(argv[1]);
+		dict = ft_struct(str);
+		ft_convert_int_to_char(argv[2], 0, dict);
 	}
-		// call function atoi for argv[2], argv[1] for refrence dict
+	else
+	{
+			write(1, "error\n", 6);
+			return (1);
+	}
+
 	return (0);
 }

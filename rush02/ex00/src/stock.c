@@ -6,42 +6,12 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:13:13 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/26 16:38:51 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:07:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/include/rush02.h"
-#include <stdio.h>
+#include "rush02.h"
 
-//lecture de l'entrée (gerer les erreurs de dict avant tout ça) et stockage dans un char *str
-char	*ft_stock(void)
-{
-	int		fd;
-	int		t_read;
-	char	tmp[1024];
-	char	*str;
-	int		i;
-
-	fd = open("numbers.dict", O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	t_read = read(fd, tmp, 1023);
-	if (t_read == -1)
-		return (NULL);
-	tmp[t_read] = '\0';
-	str = malloc((sizeof(char) * t_read) + 1);
-	i = 0;
-	while (tmp[i])
-	{
-		str[i] = tmp[i];
-		i++;
-	}
-	str[i] = '\0';
-	close(fd);
-	return (str);
-}
-
-//imprime juste un tabelau dans un tableau
 void	ft_puttab(char *dst, char *src, int j)
 {
 	int	i;
@@ -55,37 +25,11 @@ void	ft_puttab(char *dst, char *src, int j)
 	dst[i] = '\0';
 }
 
-
-/*int	ft_str_int(char *str)
-{
-	int i;
-	int nbr;
-
-	i = 0;
-	nbr = 0;
-	while (str[i])
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-		{	
-			nbr = nbr * 10;
-			nbr += str[i] - '0';
-		}
-		else
-			break;
-		i++;
-	}
-
-
-	return (nbr);
-}*/
-
-
-// parser la phrase et mettre le nombre dans le struct associé
 int	ft_puttab_number(struct s_dict **paires, char *str)
 {
-	int i;
-	int index;
-	int j;
+	int	i;
+	int	index;
+	int	j;
 
 	i = 0;
 	index = 0;
@@ -109,22 +53,17 @@ int	ft_puttab_number(struct s_dict **paires, char *str)
 	return (0);
 }
 
-// parser la phrase et mettre le carac dans le struct associé
 int	ft_puttab_carac(struct s_dict **paires, char *str)
 {
-	int i;
-	int index;
-	int j;
+	int	i;
+	int	index;
+	int	j;
 
 	i = 0;
 	index = 0;
 	while (str[i])
 	{
-		while (str[i] && str[i] != ':')
-			i++;	
-		if(str[i] == ':')
-				i++;
-		while (str[i] == ' ')
+		while (str[i] && str[i - 1] != ':')
 			i++;
 		j = 0;
 		while (str[i + j] && str[i + j] != '\n')
@@ -136,23 +75,19 @@ int	ft_puttab_carac(struct s_dict **paires, char *str)
 		while (str[i] && str[i] != '\n')
 			i++;
 		if (str[i])
-			i++;			
+			i++;
 		index++;
-		
 	}
 	return (0);
 }
 
-
-
-//creation du tableau de struc + gestion des mallocs NULL
 struct	s_dict	**ft_struct(char *str)
 {
-	int			count;
-	int			i;
+	int				count;
+	int				i;
 	struct s_dict	**paires;
 
-	count = 1;
+	count = 0;
 	i = -1;
 	while (str[++i] != '\0')
 		if (str[i] == '\n')
@@ -174,45 +109,14 @@ struct	s_dict	**ft_struct(char *str)
 	return (paires);
 }
 
-//ecris à la place de printf
 void	ft_putchar(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
-	{	
+	{
 		write(1, &str[i], 1);
 		i++;
 	}
-
-
-}
-
-
-
-//main de test
-int	main(void)
-{
-	struct s_dict	**dict;
-	char		*str;
-
-	str = ft_stock();
-	dict = ft_struct(str);
-	
-	
-	int i;
-	i = 0;
-	while(dict[i] != NULL)
-	{
-		printf("Number: %s\n", dict[i]->number);
-		printf("Caractere: %s\n\n", dict[i]->carac);
-		i++;
-	}
-
-
-
-	return (0);
-
-
 }
