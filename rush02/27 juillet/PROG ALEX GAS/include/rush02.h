@@ -26,19 +26,24 @@
 # include <stdio.h>
 
 
+
+/////////////////////////////////////////////////////////////////////////////////ALEX
 typedef struct	s_dict
 {
 	char	*number;
 	char	*carac;
 } t_Dict;
 
-typedef struct s_my_struct
-{
-	int	my_var;
-	int	my_string;
-	char	my_char;
-}	t_My_struct;
-
+void	ft_puttab(char *dst, char *src, int j);
+int	ft_puttab_number(struct s_dict **paires, char *str);
+int	ft_puttab_carac(struct s_dict **paires, char *str);
+struct	s_dict	**ft_struct(char *str);
+void	ft_putchar(char *str);
 char	*ft_stock(void);
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 #endif

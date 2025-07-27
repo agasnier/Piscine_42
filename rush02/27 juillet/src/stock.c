@@ -11,9 +11,7 @@
 /* ************************************************************************** */
 
 #include "src/include/rush02.h"
-#include <stdio.h>
 
-//lecture de l'entrée (gerer les erreurs de dict avant tout ça) et stockage dans un char *str
 char	*ft_stock(void)
 {
 	int		fd;
@@ -25,7 +23,7 @@ char	*ft_stock(void)
 	fd = open("numbers.dict", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	t_read = read(fd, tmp, 1023);
+	t_read = read(fd, tmp, 1024);
 	if (t_read == -1)
 		return (NULL);
 	tmp[t_read] = '\0';
@@ -41,51 +39,25 @@ char	*ft_stock(void)
 	return (str);
 }
 
-//imprime juste un tabelau dans un tableau
-void	ft_puttab(char *dst, char *src, int j)
+void	ft_puttab(struct s_dict **paires, char *src, int j, int index)
 {
 	int	i;
 
+	paires[index]->number = malloc(sizeof(char) * (j + 1));
 	i = 0;
 	while (i < j)
 	{
-		dst[i] = src[i];
+		paires[index]->number[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0';
+	paires[index]->number[i] = '\0';
 }
 
-
-/*int	ft_str_int(char *str)
+void	ft_pars(struct s_dict **paires, char *str)
 {
-	int i;
-	int nbr;
-
-	i = 0;
-	nbr = 0;
-	while (str[i])
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-		{	
-			nbr = nbr * 10;
-			nbr += str[i] - '0';
-		}
-		else
-			break;
-		i++;
-	}
-
-
-	return (nbr);
-}*/
-
-
-// parser la phrase et mettre le nombre dans le struct associé
-int	ft_puttab_number(struct s_dict **paires, char *str)
-{
-	int i;
-	int index;
-	int j;
+	int	i;
+	int	index;
+	int	j;
 
 	i = 0;
 	index = 0;
@@ -94,67 +66,49 @@ int	ft_puttab_number(struct s_dict **paires, char *str)
 		j = 0;
 		if (str[i] >= '0' && str[i] <= '9')
 		{
-			while (str[i + j] >= '0' && str[i + j] <= '9')
+			
+			
+			while (str[i + j] >= '0' && str [i + j] <= '9')
 				j++;
-			paires[index]->number = malloc(sizeof(char) * (j + 1));
-			if (paires[index]->number == NULL)
-				return (1);
-			ft_puttab(paires[index]->number, &str[i], j);
+			printf("J::::%d\n\n", j);
+			//paires[index]->number = malloc(sizeof(char) * (j + 1));
+			ft_puttab(paires, &str[i], j, index);
 		}
-		i += j;
+		i +=j;
+		j = 0;
+		
 		if (str[i] == '\n' && str[i + 1] != '\0')
 			index++;
+		i +=j;
 		i++;
+		printf("%d\n", index);
 	}
-	return (0);
-}
-
-// parser la phrase et mettre le carac dans le struct associé
-int	ft_puttab_carac(struct s_dict **paires, char *str)
-{
-	int i;
-	int index;
-	int j;
-
-	i = 0;
-	index = 0;
-	while (str[i])
-	{
-		while (str[i] && str[i] != ':')
-			i++;	
-		if(str[i] == ':')
-				i++;
-		while (str[i] == ' ')
-			i++;
-		j = 0;
-		while (str[i + j] && str[i + j] != '\n')
-			j++;
-		paires[index]->carac = malloc(sizeof(char) * (j + 1));
-		if (paires[index]->carac == NULL)
-			return (1);
-		ft_puttab(paires[index]->carac, &str[i], j);
-		while (str[i] && str[i] != '\n')
-			i++;
-		if (str[i])
-			i++;			
-		index++;
 		
-	}
-	return (0);
+		
+		
+//remplissage carac		
+		/*if (str[i] >= '!' && str[i] <= '~')
+		{
+			while (str[i + j] >= '!' && str[i + j] <= '~')
+				j++;
+			paires[index]->carac = malloc(sizeof(char) * (j + 1));
+			ft_puttab(paires[index]->carac, &str[i], j);
+		}*/
+		
+		
+		
+
 }
 
-
-
-//creation du tableau de struc + gestion des mallocs NULL
 struct	s_dict	**ft_struct(char *str)
 {
 	int			count;
 	int			i;
 	struct s_dict	**paires;
 
-	count = 1;
-	i = -1;
-	while (str[++i] != '\0')
+	count = 0;
+	i = 0;
+	while (str[i++] != '\0')
 		if (str[i] == '\n')
 			count++;
 	paires = malloc(sizeof(struct s_dict *) * (count + 1));
@@ -169,50 +123,19 @@ struct	s_dict	**ft_struct(char *str)
 		i++;
 	}
 	paires[i] = NULL;
-	if (ft_puttab_number(paires, str) == 1 || ft_puttab_carac(paires, str) == 1)
-		return (NULL);
+	ft_pars(paires, str);
 	return (paires);
 }
 
-//ecris à la place de printf
-void	ft_putchar(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{	
-		write(1, &str[i], 1);
-		i++;
-	}
-
-
-}
-
-
-
-//main de test
 int	main(void)
 {
 	struct s_dict	**dict;
 	char		*str;
 
 	str = ft_stock();
+	printf("%s\n", str);
+	printf("\nImpression du dict:\n%s\n", str);
 	dict = ft_struct(str);
-	
-	
-	int i;
-	i = 0;
-	while(dict[i] != NULL)
-	{
-		printf("Number: %s\n", dict[i]->number);
-		printf("Caractere: %s\n\n", dict[i]->carac);
-		i++;
-	}
-
-
-
+	printf("\n\n struc:%s\n", dict[3]->number);
 	return (0);
-
-
 }

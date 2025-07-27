@@ -25,17 +25,10 @@
 //printf
 # include <stdio.h>
 
-
-typedef struct	s_dict
-{
-	char	*number;
-	char	*carac;
-} t_Dict;
-
 typedef struct s_my_struct
 {
 	int	my_var;
-	int	my_string;
+	char	*my_string;
 	char	my_char;
 }	t_My_struct;
 
