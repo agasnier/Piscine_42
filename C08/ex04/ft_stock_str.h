@@ -1,13 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.h                                           :+:      :+:    :+:   */
+/*   ft_point.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 16:41:49 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/28 14:41:04 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/28 14:43:56 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/28 14:56:02 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define ABS(Value) (Value < 0) * (Value * - 1) + (Value >= 0) * Value
+#ifndef FT_POINT_H
+# define FT_POINT_H
+
+typedef struct 	s_stock_str
+{
+	int size;
+	char *str;
+	char *copy;
+}		t_stock_str;
+
+#endif
