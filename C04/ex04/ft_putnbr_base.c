@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:30:04 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/23 09:21:52 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/28 08:55:09 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	ft_verif_base(char *base)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int	len;
-	long lnbr;
+	int		len;
+	long	lnbr;
 
 	lnbr = nbr;
 	if (ft_verif_base(base) == 0)

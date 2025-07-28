@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/28 09:36:58 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/28 10:48:12 by algasnie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
+
 #include <stdio.h>
 
-int ft_nbr_len(int nbr, int base_len);
+int	ft_nbr_len(int nbr, int base_len);
 int	ft_str_len(char *str);
 int	ft_verif_base(char *base);
 
@@ -58,51 +71,42 @@ int	ft_atoi_base(char *str, char *base)
 	return (nbr * sign);
 }
 
-char *ft_convert_base(char *nbr, char *base_from, char *base_to)
+void	ft_putnbr_base(int nbr, char *base, int len_base, char *result)
 {
-    int nbr_value;
-    int tmp;
-    int len_base_to;
-    int nbr_base_to;
-    char *result;
-    
-    if (ft_verif_base(base_from) || ft_verif_base(base_to))
-        return NULL;
+	long	lnbr;
+	int		i;
 
-    nbr_value = ft_atoi_base(nbr, base_from);
-    
-    len_base_to = ft_str_len(base_to);
-    nbr_base_to = ft_nbr_len(nbr_value, len_base_to);
-
-    result = malloc(sizeof(char) * (nbr_base_to + 1));
-    if (result == NULL)
-        return (NULL);
-    result[nbr_base_to] = '\0';
-    tmp = nbr_value;
-
-    if (nbr_value < 0)
-        nbr_value *= -1;
-
-    result[nbr_base_to] = '\0';
-    while (nbr_base_to > 0)
-    {
-        result[--nbr_base_to] = base_to[nbr_value % len_base_to];
-        nbr_value /= len_base_to;
-    }
-    
-
-    if (tmp < 0)
-        result[0] = '-';
-    return(result);
-
-
+	lnbr = nbr;
+	if (nbr < 0)
+	{
+		result[0] = '-';
+		lnbr *= -1;
+	}
+	i = ft_nbr_len(nbr, len_base) - 1;
+	while (lnbr > 0)
+	{
+		result[i--] = base[lnbr % len_base];
+		lnbr /= len_base;
+	}
 }
 
-
-
-int main(void)
+char	*ft_convert_base(char *nbr_value, char *base_from, char *base_to)
 {
-    printf("%s", ft_convert_base("456", "0123456789", "0123456789"));
+	int		nbr;
+	int		len_base_to;
+	int		len_nbr_base_to;
+	char	*result;
 
-    return (0);
+	if (ft_verif_base(base_from) || ft_verif_base(base_to))
+		return (NULL);
+	nbr = ft_atoi_base(nbr_value, base_from);
+	len_base_to = ft_str_len(base_to);
+	len_nbr_base_to = ft_nbr_len(nbr, len_base_to);
+	result = malloc(sizeof(char) * (len_nbr_base_to + 1));
+	if (result == NULL)
+		return (NULL);
+	result[len_nbr_base_to] = '\0';
+	len_nbr_base_to--;
+	ft_putnbr_base(nbr, base_to, len_base_to, result);
+	return (result);
 }

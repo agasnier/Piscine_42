@@ -1,22 +1,30 @@
-int ft_nbr_len(int nbr, int base_len)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_base2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/28 09:37:06 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/28 09:42:23 by algasnie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+int	ft_nbr_len(int nbr, int base_len)
 {
-    int len;
+	int	len;
 
-    if (nbr <= 0)
-        len = 1;
-    else
-        len = 0;
-    while (nbr)
-    {
-        nbr/= base_len;
-        len++;
-    }
-    return (len);
-
-
+	if (nbr <= 0)
+		len = 1;
+	else
+		len = 0;
+	while (nbr)
+	{
+		nbr /= base_len;
+		len++;
+	}
+	return (len);
 }
-
-
 
 int	ft_str_len(char *str)
 {
@@ -34,9 +42,9 @@ int	ft_verif_base(char *base)
 {
 	int	i;
 	int	j;
-    int len;
+	int	len;
 
-    len = ft_str_len(base);
+	len = ft_str_len(base);
 	if (len < 2)
 		return (1);
 	i = 0;
@@ -44,7 +52,8 @@ int	ft_verif_base(char *base)
 	while (i < len)
 	{
 		j = i + 1;
-		if (base[i] == '+' || base[i] == '-' || base[i] == ' ' || (base[i] >= 9 && base[i] <= 13))
+		if (base[i] == '+' || base[i] == '-' || base[i] == ' '
+			|| (base[i] >= 9 && base[i] <= 13))
 			return (1);
 		while (j < len)
 		{

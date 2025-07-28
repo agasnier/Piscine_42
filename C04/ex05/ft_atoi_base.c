@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 09:24:28 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/23 11:18:05 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/28 08:54:23 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	ft_verif_base(char *base, int len)
 	while (i < len)
 	{
 		j = i + 1;
-		if (base[i] == '+' || base[i] == '-' || base[i] == ' ' || (base[i] >= 9 && base[i] <= 13))
+		if (base[i] == '+' || base[i] == '-'
+			|| base[i] == ' ' || (base[i] >= 9 && base[i] <= 13))
 			return (1);
 		while (j < len)
 		{
