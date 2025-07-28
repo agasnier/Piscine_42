@@ -44,7 +44,7 @@ void	ft_strcpy(char *dst, char *src, int n)
 	int	i;
 
 	i = 0;
-	while(i < n && (src[i] != '\0' || dst[i] != '\0'))
+	while(i < n && src[i] != '\0')
 	{		
 		dst[i] = src[i];
 		i++;
@@ -56,18 +56,18 @@ char	**ft_put_in(char **strs, int word, char *str, char *charset)
 {
 	int	i;
 	int	j;
-	int k;
 	int	len;
 
 	i = 0;
 	j = 0;
-	while (i <= word)
+	while (i < word)
 	{
-		k = 0;
+		while (str[j] != '\0' && ft_is_sep(str[j], charset))
+			j++;
 		len = 0;
 		while (str[j + len] != '\0' && ft_is_sep(str[j + len], charset) != 1)
 			len++;
-		strs[i] = malloc(sizeof(char *) * (len + 1));
+		strs[i] = malloc(sizeof(char) * (len + 1));
 		if (strs[i] == NULL)
 			return NULL;
 		ft_strcpy(strs[i], &str[j], len);
@@ -90,13 +90,14 @@ char	**ft_split(char *str, char *charset)
 	word = 0;
 	while (str[i] != '\0')
 	{
-		if (ft_is_sep(str[i], charset) == 1)
+		if (ft_is_sep(str[i], charset) == 0)
 		{
-			while (ft_is_sep(str[i], charset) == 1)
-				i++;
 			word++;	
+			while (ft_is_sep(str[i], charset) == 0 && str[i] != '\0')
+				i++;
 		}
-		i++;
+		else
+			i++;
 	}
 	strs = malloc(sizeof(char *) * (word + 1));
 	if (strs == NULL)
@@ -110,7 +111,7 @@ char	**ft_split(char *str, char *charset)
 int	main(void)
 {
 	char **strs;
-	char a[] = "";
+	char a[] = ", alexandre, ";
 	char b[] = ", ";
 
 	strs = ft_split(a, b);
@@ -119,7 +120,7 @@ int	main(void)
 	i = 0;
 	while (strs[i] != NULL)
 	{
-		printf("%s", strs[i]);
+		printf("%s\n", strs[i]);
 
 
 

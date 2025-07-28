@@ -84,11 +84,13 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	len = ft_strs_len(size, strs, sep);
 	if (size == 0)
 		len = 0;
-	ptr = malloc(sizeof(char) * len + 1);
+	ptr = malloc(sizeof(char) * (len + 1));
 	if (ptr == NULL)
 		return (NULL);
+	ptr[len] = '\0';
 
-	ft_remplissage(size, strs, sep, ptr);
+	if (size > 0)
+		ft_remplissage(size, strs, sep, ptr);
 
 	return (ptr);
 }

@@ -82,6 +82,11 @@ void	ft_putnbr_base(int nbr, char *base, int len_base, char *result)
 		result[0] = '-';
 		lnbr *= -1;
 	}
+	if (lnbr == 0)
+	{
+		result[0] = base[0];
+		return;
+	}
 	i = ft_nbr_len(nbr, len_base) - 1;
 	while (lnbr > 0)
 	{
