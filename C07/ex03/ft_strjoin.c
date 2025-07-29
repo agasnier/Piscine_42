@@ -6,17 +6,12 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:23:56 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/24 11:04:26 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/29 09:52:00 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 
-
-
-
-//calcul de len entiere + sep * (size - 1)
 int	ft_str_len(char *str)
 {
 	int	i;
@@ -29,7 +24,7 @@ int	ft_str_len(char *str)
 	return (i);
 }
 
-int ft_strs_len(int size, char **strs, char *sep)
+int	ft_strs_len(int size, char **strs, char *sep)
 {
 	int	len;
 	int	i;
@@ -42,16 +37,15 @@ int ft_strs_len(int size, char **strs, char *sep)
 		i++;
 	}
 	len += (size - 1) * ft_str_len(sep);
-
 	return (len);
 }
 
-void ft_remplissage(int size, char ** strs, char *sep, char *ptr)
+void	ft_remplissage(int size, char **strs, char *sep, char *ptr)
 {
-	int k;
-	int j;
-	int i;
-	
+	int	k;
+	int	j;
+	int	i;
+
 	k = 0;
 	j = 0;
 	while (j < size)
@@ -75,10 +69,9 @@ void ft_remplissage(int size, char ** strs, char *sep, char *ptr)
 	ptr[k] = '\0';
 }
 
-
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	int len;
+	int		len;
 	char	*ptr;
 
 	len = ft_strs_len(size, strs, sep);
@@ -88,25 +81,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	if (ptr == NULL)
 		return (NULL);
 	ptr[len] = '\0';
-
 	if (size > 0)
 		ft_remplissage(size, strs, sep, ptr);
-
 	return (ptr);
 }
-
-int	main(void)
-{
-	char *strs[3];
-	strs[0] = "Alex";
-	strs[1] = "Alba";
-	strs[2] = "Dian";
-	char *sep = ", ";
-	printf("%s" ,ft_strjoin(3, strs, sep));
-
-
-
-	return (0);
-}
-
-

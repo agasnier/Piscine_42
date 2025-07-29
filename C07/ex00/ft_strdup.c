@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:55:29 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/23 14:21:53 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/29 09:46:14 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,4 @@ char	*ft_strdup(char *src)
 	}
 	ptr[i] = '\0';
 	return (ptr);
-}
-
-#include <stdio.h>
-
-int main(void)
-{
-	char a[] = "Alex";
-	printf("%s", ft_strdup(a));
-
-
-	return (0);
 }

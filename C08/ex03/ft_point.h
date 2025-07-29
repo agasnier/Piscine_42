@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 14:43:56 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/28 14:56:02 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/29 10:06:18 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct t_point
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 }	t_point;
 

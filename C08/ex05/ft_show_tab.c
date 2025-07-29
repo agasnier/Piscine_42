@@ -6,7 +6,7 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:28:19 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/28 16:28:22 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/29 10:08:43 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av);
 
 void	ft_putnbr(int nb)
 {
-	char a;
+	char	a;
 
 	if (nb == -2147483648)
 	{
@@ -50,8 +50,6 @@ void	ft_putstr(char *str)
 	}
 }
 
-
-
 void	ft_show_tab(struct s_stock_str *par)
 {
 	int	i;
@@ -65,22 +63,6 @@ void	ft_show_tab(struct s_stock_str *par)
 		write(1, "\n", 1);
 		ft_putstr(par[i].copy);
 		write(1, "\n", 1);
-
 		i++;
 	}
-
-}
-
-int main(void)
-{
-	int ac = 4;
-	char *a[] = { "alex" , "Alexis" , "alex" , "Alexis" };
-	struct s_stock_str *test;
-
-
-	test = ft_strs_to_tab(ac, a); 
-	
-	ft_show_tab(test);
-
-	return (0);
 }

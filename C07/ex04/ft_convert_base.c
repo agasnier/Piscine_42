@@ -6,13 +6,11 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 09:36:58 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/28 10:48:12 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/29 09:53:05 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-#include <stdio.h>
 
 int	ft_nbr_len(int nbr, int base_len);
 int	ft_str_len(char *str);
@@ -85,7 +83,7 @@ void	ft_putnbr_base(int nbr, char *base, int len_base, char *result)
 	if (lnbr == 0)
 	{
 		result[0] = base[0];
-		return;
+		return ;
 	}
 	i = ft_nbr_len(nbr, len_base) - 1;
 	while (lnbr > 0)

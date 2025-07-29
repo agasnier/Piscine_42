@@ -6,13 +6,11 @@
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:11:06 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/28 14:17:07 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/07/29 09:55:52 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-#include <stdio.h>
 
 int	ft_str_len(char *str)
 {
@@ -35,7 +33,6 @@ int	ft_is_sep(char c, char *sep)
 			return (1);
 		i++;
 	}
-
 	return (0);
 }
 
@@ -44,8 +41,8 @@ void	ft_strcpy(char *dst, char *src, int n)
 	int	i;
 
 	i = 0;
-	while(i < n && src[i] != '\0')
-	{		
+	while (i < n && src[i] != '\0')
+	{
 		dst[i] = src[i];
 		i++;
 	}
@@ -69,7 +66,7 @@ char	**ft_put_in(char **strs, int word, char *str, char *charset)
 			len++;
 		strs[i] = malloc(sizeof(char) * (len + 1));
 		if (strs[i] == NULL)
-			return NULL;
+			return (NULL);
 		ft_strcpy(strs[i], &str[j], len);
 		j += len;
 		while (ft_is_sep(str[j], charset) == 1 && str[j] != '\0')
@@ -83,8 +80,8 @@ char	**ft_put_in(char **strs, int word, char *str, char *charset)
 char	**ft_split(char *str, char *charset)
 {
 	char	**strs;
-	int	i;
-	int word;
+	int		i;
+	int		word;
 
 	i = 0;
 	word = 0;
@@ -92,7 +89,7 @@ char	**ft_split(char *str, char *charset)
 	{
 		if (ft_is_sep(str[i], charset) == 0)
 		{
-			word++;	
+			word++;
 			while (ft_is_sep(str[i], charset) == 0 && str[i] != '\0')
 				i++;
 		}
@@ -101,33 +98,9 @@ char	**ft_split(char *str, char *charset)
 	}
 	strs = malloc(sizeof(char *) * (word + 1));
 	if (strs == NULL)
-		return (NULL); 
+		return (NULL);
 	strs = ft_put_in(strs, word, str, charset);
 	if (strs == NULL)
 		return (NULL);
 	return (strs);
-}
-
-int	main(void)
-{
-	char **strs;
-	char a[] = ", alexandre, ";
-	char b[] = ", ";
-
-	strs = ft_split(a, b);
-
-	int i;
-	i = 0;
-	while (strs[i] != NULL)
-	{
-		printf("%s\n", strs[i]);
-
-
-
-		i++;
-	}
-	
-
-
-
 }

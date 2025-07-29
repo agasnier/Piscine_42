@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   outils.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 14:23:23 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/29 09:47:22 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/29 11:30:53 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/29 11:30:55 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "bsq.h"
 
-int	*ft_range(int min, int max)
+int	size_vert(char *str)
 {
-	int	len;
-	int	*tab;
 	int	i;
+	int	count;
 
-	if (min >= max)
-		return (NULL);
-	len = max - min;
-	tab = malloc((sizeof(int) * len));
-	if (tab == NULL)
-		return (NULL);
 	i = 0;
-	while (i < len)
+	count = 0;
+	while (str[i])
 	{
-		tab[i] = min;
-		min++;
+		if (str[i] == '\n')
+			count++;
 		i++;
 	}
+	return (count);
+}
+
+int	size_hor(char *str)
+{
+	int i;
+
 	i = 0;
-	while (i < len)
+	while (str[i] != '\n')
 	{
 		i++;
 	}
-	return (tab);
+	return (i);
 }
