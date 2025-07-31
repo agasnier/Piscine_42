@@ -85,3 +85,19 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		ft_remplissage(size, strs, sep, ptr);
 	return (ptr);
 }
+
+
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char *a[] = { "", "alexis", "", "alexis" };
+	char sep[] = "[]";
+
+	printf("%s", ft_strjoin(4, a, sep));
+
+
+
+	return (0);
+}

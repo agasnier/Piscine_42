@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   outils.c                                           :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 11:30:53 by algasnie          #+#    #+#             */
-/*   Updated: 2025/07/29 11:30:55 by algasnie         ###   ########.fr       */
+/*   Created: 2025/07/15 13:53:13 by algasnie          #+#    #+#             */
+/*   Updated: 2025/07/16 14:06:04 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq.h"
-
-int	size_vert(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
-	int	count;
 
 	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-int	size_hor(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\n')
+	while (s1[i] == s2[i] && (s1[i] != '\0' && s2[i] != '\0'))
 	{
 		i++;
 	}
-	return (i);
+	if (s1[i] != s2[i])
+	{
+		return (s1[i] - s2[i]);
+	}
+	return (0);
 }

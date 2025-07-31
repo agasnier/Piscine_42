@@ -9,7 +9,7 @@
 /*   Updated: 2025/07/29 09:53:05 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdio.h>
 #include <stdlib.h>
 
 int	ft_nbr_len(int nbr, int base_len);
@@ -66,7 +66,9 @@ int	ft_atoi_base(char *str, char *base)
 		nbr += ft_in_base(&str[i], base);
 		i++;
 	}
+	printf("%d\n\n", nbr);
 	return (nbr * sign);
+	
 }
 
 void	ft_putnbr_base(int nbr, char *base, int len_base, char *result)
@@ -112,4 +114,14 @@ char	*ft_convert_base(char *nbr_value, char *base_from, char *base_to)
 	len_nbr_base_to--;
 	ft_putnbr_base(nbr, base_to, len_base_to, result);
 	return (result);
+}
+
+
+
+int main(void)
+{
+	printf("%s", ft_convert_base("2147483647123456", "0123456789", "01"));
+
+
+	return (0);
 }
